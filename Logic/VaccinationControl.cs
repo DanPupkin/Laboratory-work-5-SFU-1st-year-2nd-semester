@@ -27,7 +27,7 @@ namespace Coronavirus_Laba_5
             WorksheetCollection collection = wb.Worksheets;
             Worksheet worksheet = collection[0];
             int rows = worksheet.Cells.MaxDataRow+1;
-            Console.WriteLine(wb.Worksheets[0].Name);
+            
             //int columns = worksheet.Cells.MaxDataColumn;
 
 

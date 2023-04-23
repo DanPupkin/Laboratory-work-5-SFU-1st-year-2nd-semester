@@ -10,7 +10,7 @@ namespace Coronavirus_Laba_5
         {
             
             InitializeComponent();
-            AllocConsole();
+         //   AllocConsole();
             vaccination = new Vaccination();
             
             AllPacients.Items.AddRange(vaccination.GetPersons().ToArray());
