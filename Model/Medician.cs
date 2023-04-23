@@ -69,7 +69,6 @@ namespace Coronavirus_Laba_5
             {
                 if (rnd.NextDouble() > 0.5)
                 {
-                    Console.WriteLine(rnd.NextDouble());
                     person.VaccitationCount++;
                     Vaccinepersons.Remove(person);
                     
