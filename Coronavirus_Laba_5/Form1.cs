@@ -1,4 +1,5 @@
 
+using Logic;
 using System.Runtime.InteropServices;
 
 namespace Coronavirus_Laba_5
@@ -10,9 +11,10 @@ namespace Coronavirus_Laba_5
         {
             
             InitializeComponent();
-            //   AllocConsole();
-           Medician Medcentr = new Medician() { Name = "Медцентр СФУ" };
-            vaccination = new Vaccination(Medcentr);
+           //   AllocConsole();
+            
+            
+            vaccination = new Vaccination(MedicianControl.MakeMedician("Медцентр СФУ"));
             
             AllPacients.Items.AddRange(vaccination.GetPersons().ToArray());
             
