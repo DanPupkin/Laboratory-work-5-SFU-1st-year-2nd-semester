@@ -10,8 +10,9 @@ namespace Coronavirus_Laba_5
         {
             
             InitializeComponent();
-         //   AllocConsole();
-            vaccination = new Vaccination();
+            //   AllocConsole();
+           Medician Medcentr = new Medician() { Name = "Медцентр СФУ" };
+            vaccination = new Vaccination(Medcentr);
             
             AllPacients.Items.AddRange(vaccination.GetPersons().ToArray());
             

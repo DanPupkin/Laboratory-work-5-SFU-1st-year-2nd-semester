@@ -4,26 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Aspose.Cells;
+using Logic;
+using Model;
 
 
 
 
 namespace Coronavirus_Laba_5
 {
-    public class Vaccination
+    public class Vaccination:IVaccination
     {
         public delegate void VaccinationListNotify();
-        public event VaccinationListNotify? Update;
-        Medician Medcentr { get; set; }
+        public event IVaccination.VaccinationListNotify? Update;
+        public IMedician Medcentr { get; set; }
         Workbook wb { get; set; }
-        public Vaccination() 
+        public Vaccination(IMedician Medcentr) 
 
         {
-            Medcentr = new Medician() { Name = "Медцентр СФУ" };
+            this.Medcentr = Medcentr;
             Medcentr.Update += Medcentr_Update;
             wb = new Workbook("C:\\Users\\arararagi\\source\\repos\\Coronavirus_Laba_5\\Logic\\pacients.xlsx");
-            //Medcentr.Persons = new List<Person>();
-            //wb.AbsolutePath = "C:\\Users\\arararagi\\source\\repos\\Coronavirus_Laba_5\\Logic\\pacients.xlsx";
+
             WorksheetCollection collection = wb.Worksheets;
             Worksheet worksheet = collection[0];
             int rows = worksheet.Cells.MaxDataRow+1;
@@ -48,35 +49,35 @@ namespace Coronavirus_Laba_5
         
         }
 
-        private void Medcentr_Update()
+        public void Medcentr_Update()
         {
-            this.Update.Invoke();
+                this.Update?.Invoke();
         }
 
         public List<string> GetPersons()
         {
             List<string> list = new List<string>();
-            foreach (Person pers in Medcentr.Persons)
+            foreach (IPerson pers in Medcentr.Persons)
             {
-                list.Add($"[{pers.VaccitationCount}] {pers.Name}");
+                list.Add($"[{pers.VaccinationCount}] {pers.Name}");
             }
             return list;
         }
         public List<string> GetFirstVaccPersons()
         {
             List<string> list = new List<string>();
-            foreach (Person pers in Medcentr.Vaccinepersons)
+            foreach (IPerson pers in Medcentr.Vaccinepersons)
             {
-                list.Add($"[{pers.VaccitationCount}] {pers.Name}");
+                list.Add($"[{pers.VaccinationCount}] {pers.Name}");
             }
             return list;
         }
         public List<string> GetSecondVaccPersons()
         {
             List<string> list = new List<string>();
-            foreach (Person pers in Medcentr.SecondVaccinepersons)
+            foreach (IPerson pers in Medcentr.SecondVaccinepersons)
             {
-                list.Add($"[{pers.VaccitationCount}] {pers.Name}");
+                list.Add($"[{pers.VaccinationCount}] {pers.Name}");
             }
             return list;
         }
