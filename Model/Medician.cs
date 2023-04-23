@@ -67,8 +67,9 @@ namespace Coronavirus_Laba_5
             Random rnd = new Random();
             foreach(Person person in Vaccinepersons.ToList())
             {
-                if (rnd.Next() > 0.5)
+                if (rnd.NextDouble() > 0.5)
                 {
+                    Console.WriteLine(rnd.NextDouble());
                     person.VaccitationCount++;
                     Vaccinepersons.Remove(person);
                     
